@@ -1,0 +1,2 @@
+# laraBidd
+Laravel bidding project.
