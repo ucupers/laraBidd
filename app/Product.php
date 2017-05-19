@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
+        'user_id',
         'title',
         'description',
         'imgUrl',
@@ -22,13 +23,18 @@ class Product extends Model
         return $query->where('active', 0);
     }
 
-    public function ratings(){
-
+    public function ratings()
+    {
         return $this->hasMany(Rating::class);
     }
 
-    public function addRating($grade, $comment){
-        //TODO USER ID !!!!!!!!!
-        $this->ratings()->create(['grade'=> $grade, 'comment' => $comment, 'user_id' => '3']);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function addRating($grade, $comment)
+    {
+        $this->ratings()->create(['grade' => $grade, 'comment' => $comment, 'user_id' => '3']);
     }
 }

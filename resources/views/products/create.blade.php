@@ -11,27 +11,27 @@
 
                         <form class="form" method="post" action="">
                             {{ csrf_field() }}
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="title">Title :</label>
-                                <input type="text" class="form-control" id="title" name="title" required>
+                                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" required>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
                                 <label for="title">Description :</label>
-                                <textarea class="form-control" id="description" name="description" required></textarea>
+                                <textarea class="form-control" id="description" name="description" required>{{ old('description') }}</textarea>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('imgUrl') ? ' has-error' : '' }}">
                                 <label for="title">Img-Url :</label>
-                                <input type="text" class="form-control" id="imgUrl" name="imgUrl" required>
+                                <input type="text" class="form-control" id="imgUrl" name="imgUrl" value="{{ old('imgUrl') }}" required>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('minBid') ? ' has-error' : '' }}">
                                 <label for="title">Min-bid :</label>
                                 <input type="number" class="form-control" id="minBid" name="minBid" required>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('instantPurchasePrice') ? ' has-error' : '' }}">
                                 <label for="title">Instant purchase price :</label>
                                 <input type="number" class="form-control" id="instantPurchasePrice" name="instantPurchasePrice">
                             </div>

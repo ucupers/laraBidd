@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 class ProductsController extends Controller
 {
     //Display all products
-    public function index(){
+    public function index()
+    {
 
         $products = DB::table('products')->get();
 
@@ -18,18 +19,21 @@ class ProductsController extends Controller
     }
 
     //Show ONE product
-    public function show(Product $product){
+    public function show(Product $product)
+    {
 
         return view('products.single', compact('product'));
     }
 
     //Create product
-    public function create(){
+    public function create()
+    {
         return view('products.create');
     }
 
     //Store product
-    public function store(){
+    public function store()
+    {
 
         $this->validate(request(), [
             'title' => 'required|string|min:3|max:255',
@@ -56,10 +60,12 @@ class ProductsController extends Controller
         return view('products.response');
     }
 
-    public function edit(Product $product){
+    public function edit(Product $product)
+    {
     }
 
-    public function delete(Product $product){
+    public function delete(Product $product)
+    {
     }
 
 }

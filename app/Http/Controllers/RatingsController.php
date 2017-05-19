@@ -8,7 +8,8 @@ use auctionTime\Rating;
 
 class RatingsController extends Controller
 {
-    public function store(Product $product){
+    public function store(Product $product)
+    {
         $product->addRating(request('grade'), request('comment'));
         return back();
     }

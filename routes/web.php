@@ -12,8 +12,12 @@
 */
 
 
-
 Auth::routes();
+
+Route::get('/product-creation', 'ProductsController@create');
+Route::post('/product-creation', 'ProductsController@store');
+Route::get('/products/{product}/edit', 'ProductsController@edit');
+Route::post('/products/{product}/ratings', 'RatingsController@store');
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -21,8 +25,3 @@ Route::get('/products', 'ProductsController@index');
 
 Route::get('/products/{product}', 'ProductsController@show');
 
-Route::get('/product-creation', 'ProductsController@create');
-Route::post('/product-creation', 'ProductsController@store');
-Route::get('/products/{product}/edit', 'ProductsController@edit');
-
-Route::post('/products/{product}/ratings', 'RatingsController@store');
