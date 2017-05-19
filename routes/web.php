@@ -23,8 +23,9 @@ Route::group( ['middleware' => 'auth' ], function()
     Route::post('/products/{product}/ratings', 'RatingsController@store');
 
     //User mangement
-    Route::get('/user-update', 'UsersUpdateController@update');
-    Route::post('/user-update', 'UsersUpdateController@store');
+    Route::get('/users', 'UsersController@show');
+    Route::get('/user-update', 'UsersController@update');
+    Route::post('/user-update', 'UsersController@store');
 
 });
 
