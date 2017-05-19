@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('products')->insert([
-            'user_id' => 1,
+            'user_id' => 2,
             'title' => 'Poire',
             'description' => 'La belle poire !',
             'imgUrl' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnmawlitdA3Y9CKdHC9LM02hHboFmlpvFgXrY1hqePUSLedw2o',
@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('products')->insert([
-            'user_id' => 1,
+            'user_id' => 3,
             'title' => 'Fraise',
             'description' => 'La belle fraise !',
             'imgUrl' => 'http://99sudbury.ca/GYM%20IMAGES/Karin%20feb%20131560706036Fruits_Wallpapers__04.jpg',

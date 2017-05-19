@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     //Display all products
     public function index()
     {
@@ -47,6 +53,7 @@ class ProductsController extends Controller
         ]);
 
         Product::create([
+            'user_id' => auth()->id(),
             'title' => request('title'),
             'description' => request('description'),
             'imgUrl' => request('imgUrl'),

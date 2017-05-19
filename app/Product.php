@@ -33,8 +33,8 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function addRating($grade, $comment)
+    public function addRating($grade, $comment, $id)
     {
-        $this->ratings()->create(['grade' => $grade, 'comment' => $comment, 'user_id' => '3']);
+        $this->ratings()->create(['grade' => $grade, 'comment' => $comment, 'user_id' => $id]);
     }
 }
