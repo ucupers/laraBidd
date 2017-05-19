@@ -37,7 +37,26 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false">
+                            Products <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="/products">
+                                    List all
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/product-creation">
+                                    Sell a product
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="/users"> Sellers </a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -45,6 +64,7 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
                         <li><a href="{{ route('register') }}">Register</a></li>
                     @else
                         <li class="dropdown">

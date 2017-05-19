@@ -3,25 +3,24 @@
 namespace auctionTime\Http\Controllers;
 
 use auctionTime\Product;
+use auctionTime\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
 class ProductsController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['index', 'show']);
-    }
-
     //Display all products
     public function index()
     {
 
-        $products = DB::table('products')->get();
+        $products = Product::latest()->get();
 
-        return view('welcome', compact('products'));
+        $bestUsers = User::bestUsers();
+
+        //dd($bestUsers);
+
+        return view('welcome', compact('products', 'bestUsers'));
     }
 
     //Show ONE product
@@ -65,14 +64,6 @@ class ProductsController extends Controller
         ]);
 
         return view('products.response');
-    }
-
-    public function edit(Product $product)
-    {
-    }
-
-    public function delete(Product $product)
-    {
     }
 
 }

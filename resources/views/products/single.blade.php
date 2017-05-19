@@ -31,6 +31,8 @@
                                 @endforeach
                             </ul>
 
+                            @if (!Auth::guest())
+
                             <hr>
 
                             <div class="card">
@@ -63,6 +65,8 @@
                                     </form>
                                 </div>
                             </div>
+                            @endif
+
                         </div>
 
                     </div>

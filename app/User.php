@@ -4,6 +4,7 @@ namespace auctionTime;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function bestUsers()
+    {
+        return DB::table('users')
+            ->join('products', 'users.id', '=', 'products.user_id')
+            ->groupBy('users.name', 'users.id')
+            ->select('users.name', 'users.id', DB::raw('count(*) as products'))
+            ->get();
+    }
 }
