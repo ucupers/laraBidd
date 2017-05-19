@@ -13,12 +13,9 @@ class ProductsController extends Controller
     //Display all products
     public function index()
     {
-
         $products = Product::latest()->get();
 
         $bestUsers = User::bestUsers();
-
-        //dd($bestUsers);
 
         return view('welcome', compact('products', 'bestUsers'));
     }
@@ -26,7 +23,6 @@ class ProductsController extends Controller
     //Show ONE product
     public function show(Product $product)
     {
-
         return view('products.single', compact('product'));
     }
 

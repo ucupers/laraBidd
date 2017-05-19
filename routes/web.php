@@ -25,7 +25,7 @@ Route::group( ['middleware' => 'auth' ], function()
     //User mangement
     Route::get('/users', 'UsersController@show');
     Route::get('/user-update', 'UsersController@update');
-    Route::post('/user-update', 'UsersController@store');
+    Route::post('/user-update', 'UsersController@store')->name('updateUser');
 
 });
 
