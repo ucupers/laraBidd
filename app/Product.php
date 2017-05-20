@@ -14,6 +14,13 @@ class Product extends Model
         'minBid',
         'instantPurchasePrice',
         'active',
+        'duration',
+        'created_at',
+        'updated_at'
+    ];
+
+    protected $dates = [
+        'duration',
         'created_at',
         'updated_at'
     ];

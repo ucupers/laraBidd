@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->text('imgUrl');
             $table->integer('minBid');
             $table->integer('instantPurchasePrice');
+            $table->date('duration');
             $table->boolean('active')->default(false);
             $table->timestamps();
         });

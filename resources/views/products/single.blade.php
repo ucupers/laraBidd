@@ -9,13 +9,25 @@
 
                     <div class="panel-body">
 
-                        <b>{{ $product->title }}</b>
+                        <h1>{{ $product->title }}</h1>
                         <ul>
                             <li><b>Desc : </b>{{ $product->description }}</li>
                             <li><b>Img : </b><img class="sample" src="{{ $product->imgUrl }}"/></li>
                             <li><b>MinBid : </b>{{ $product->minBid }}</li>
                             <li><b>Instant purchase : </b>{{ $product->instantPurchasePrice }}</li>
                         </ul>
+
+                        <hr>
+
+                        <h3>Bid for this product !</h3>
+                        <div class="alert alert-info">
+                            This sale will end <b>{{$product->duration->diffForHumans()}}</b>
+                        </div>
+                        <div class="btn-group btn-group-justified">
+                            <a href="#" class="btn btn-primary">1€</a>
+                            <a href="#" class="btn btn-info">5€</a>
+                            <a href="#" class="btn btn-success">10€</a>
+                        </div>
 
                         <hr>
 
@@ -26,7 +38,7 @@
                                         <p>By : {{$rating->user->email}}</p>
                                         <p>{{$rating->created_at->diffForHumans()}}</p>
                                         <b>{{$rating->grade}} / 5</b>
-                                        <em>{{$rating->comment}}
+                                        <em>{{$rating->comment}}</em>
                                     </li>
                                 @endforeach
                             </ul>

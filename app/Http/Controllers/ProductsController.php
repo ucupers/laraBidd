@@ -42,10 +42,14 @@ class ProductsController extends Controller
             'imgUrl' => 'required|string|min:3|max:255',
             'minBid' => 'required|numeric',
             'instantPurchasePrice' => 'numeric',
+            'duration' => 'numeric|min:1|max:31',
             'active' => 'boolean',
             'created_at' => 'nullable|date',
             'updated_at' => 'nullable|date'
         ]);
+
+        $duration = new \DateTime();
+        $duration->add(new \DateInterval('P'.request('duration').'D'));
 
         $product = [
             'user_id' => auth()->id(),
@@ -54,6 +58,7 @@ class ProductsController extends Controller
             'imgUrl' => request('imgUrl'),
             'minBid' => request('minBid'),
             'instantPurchasePrice' => request('instantPurchasePrice'),
+            'duration' => $duration,
             'active' => request('active'),
             'created_at' => new \DateTime(),
             'updated_at' => new \DateTime()

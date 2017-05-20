@@ -11,6 +11,8 @@
 |
 */
 
+use Carbon\Carbon;
+
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(auctionTime\User::class, function (Faker\Generator $faker) {
     static $password;
@@ -32,12 +34,13 @@ $factory->define(auctionTime\Product::class, function (Faker\Generator $faker) {
         },
         'title' => $faker->sentence(),
         'description' => $faker->paragraph,
-        'imgUrl' => $faker->url,
+        'imgUrl' => 'https://4.bp.blogspot.com/-JFud0TuYv2Y/VpdkV9WyKFI/AAAAAAAAAPM/GZZcbVk-Alk/s1600/froots.jpg',
         'minBid' => $faker->randomFloat($nbMaxDecimals = 3, $min = 0, $max = 100),
         'instantPurchasePrice' =>  $faker->randomFloat($nbMaxDecimals = 3, $min = 101, $max = 500),
+        'duration'=> Carbon::tomorrow(),
         'active' => $faker->boolean,
-        'created_at' => new \DateTime(),
-        'updated_at' => new \DateTime()
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
     ];
 });
 

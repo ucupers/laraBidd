@@ -29,33 +29,5 @@ class DatabaseSeeder extends Seeder
             factory(Product::class)->create();
         }
 
-
-        //RATINGS
-
-        DB::table('ratings')->insert([
-            'product_id' => 1,
-            'user_id' => 1,
-            'grade' => 3,
-            'comment' => "Taste good !",
-            'created_at' => new \DateTime(),
-            'updated_at' => new \DateTime()
-        ]);
-        DB::table('ratings')->insert([
-            'product_id' => 1,
-            'user_id' => 1,
-            'grade' => 1,
-            'comment' => "Meh...",
-            'created_at' => new \DateTime(),
-            'updated_at' => new \DateTime()
-        ]);
-        DB::table('ratings')->insert([
-            'product_id' => 1,
-            'user_id' => 1,
-            'grade' => 5,
-            'comment' => "Best taste ever !",
-            'created_at' => new \DateTime(),
-            'updated_at' => new \DateTime()
-        ]);
-
     }
 }
