@@ -17,23 +17,18 @@ Auth::routes();
 Route::group( ['middleware' => 'auth' ], function()
 {
     //Product mangement
-    Route::get('/product-creation', 'ProductsController@create');
-    Route::post('/product-creation', 'ProductsController@store');
-    Route::get('/products/{product}/edit', 'ProductsController@edit');
-    Route::post('/products/{product}/ratings', 'RatingsController@store');
+    Route::get('/product-creation', 'ProductsController@create')->name('productsCreate');
+    Route::post('/product-creation', 'ProductsController@store')->name('productsStore');
+    Route::get('/products/{product}/edit', 'ProductsController@edit')->name('productsEdit');
+    Route::post('/products/{product}/ratings', 'RatingsController@store')->name('ratingsStore');
 
     //User mangement
-    Route::get('/users', 'UsersController@show');
-    Route::get('/user-update', 'UsersController@update');
-    Route::post('/user-update', 'UsersController@store')->name('updateUser');
+    Route::get('/users', 'UsersController@index')->name('usersIndex');
+    Route::get('/user-update', 'UsersController@update')->name('usersUpdate');
+    Route::post('/user-update', 'UsersController@store')->name('usersStore');
 
 });
 
-
-
-Route::get('/', 'HomeController@index');
-
-Route::get('/products', 'ProductsController@index')->name('home');
-
-Route::get('/products/{product}', 'ProductsController@show');
+Route::get('/', 'ProductsController@index')->name('productsIndex');
+Route::get('/products/{product}', 'ProductsController@show')->name('productsShow');
 

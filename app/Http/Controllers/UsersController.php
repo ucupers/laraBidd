@@ -7,7 +7,7 @@ use auctionTime\User;
 
 class UsersController extends Controller
 {
-    public function show()
+    public function index()
     {
         $users = User::bestUsers();
 

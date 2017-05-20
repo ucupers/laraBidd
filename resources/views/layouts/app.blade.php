@@ -45,12 +45,12 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="/products">
+                                <a href="{{ route('productsIndex') }}">
                                     List all
                                 </a>
                             </li>
                             <li>
-                                <a href="/product-creation">
+                                <a href="{{ route('productsCreate') }}">
                                     Sell a product
                                 </a>
                             </li>

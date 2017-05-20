@@ -47,7 +47,7 @@ class ProductsController extends Controller
             'updated_at' => 'nullable|date'
         ]);
 
-        Product::create([
+        $product = [
             'user_id' => auth()->id(),
             'title' => request('title'),
             'description' => request('description'),
@@ -57,9 +57,11 @@ class ProductsController extends Controller
             'active' => request('active'),
             'created_at' => new \DateTime(),
             'updated_at' => new \DateTime()
-        ]);
+        ];
 
-        return view('products.response');
+        Product::create($product);
+
+        return redirect()->route('productsShow', DB::getPdo()->lastInsertId());
     }
 
 }

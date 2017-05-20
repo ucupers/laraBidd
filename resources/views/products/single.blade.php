@@ -33,8 +33,6 @@
 
                             @if (!Auth::guest())
 
-                            <hr>
-
                             <div class="card">
                                 <div class="card-block">
                                     <form method="post" action="/products/{{ $product->id }}/ratings">
