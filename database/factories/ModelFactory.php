@@ -29,15 +29,13 @@ $factory->define(auctionTime\User::class, function (Faker\Generator $faker) {
 $factory->define(auctionTime\Product::class, function (Faker\Generator $faker) {
 
     return [
-        'user_id' => function(){
-            return factory(auctionTime\User::class)->create()->id;
-        },
+        'user_id' => rand(1,15),
         'title' => $faker->sentence(),
         'description' => $faker->paragraph,
         'imgUrl' => 'https://4.bp.blogspot.com/-JFud0TuYv2Y/VpdkV9WyKFI/AAAAAAAAAPM/GZZcbVk-Alk/s1600/froots.jpg',
         'minBid' => $faker->randomFloat($nbMaxDecimals = 3, $min = 0, $max = 100),
         'instantPurchasePrice' =>  $faker->randomFloat($nbMaxDecimals = 3, $min = 101, $max = 500),
-        'duration'=> Carbon::tomorrow(),
+        'duration'=> Carbon::tomorrow(+1),
         'active' => $faker->boolean,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()

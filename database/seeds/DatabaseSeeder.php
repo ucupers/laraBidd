@@ -23,8 +23,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('powpow'),
         ]);
 
-        //PRODUCTS
+        //USERS
         for ($i=0; $i < 10; $i++)
+        {
+            factory(User::class)->create();
+        }
+
+        //PRODUCTS
+        for ($i=0; $i < 100; $i++)
         {
             factory(Product::class)->create();
         }

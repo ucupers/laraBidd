@@ -20,12 +20,15 @@ Route::group( ['middleware' => 'auth' ], function()
     Route::get('/product-creation', 'ProductsController@create')->name('productsCreate');
     Route::post('/product-creation', 'ProductsController@store')->name('productsStore');
     Route::get('/products/{product}/edit', 'ProductsController@edit')->name('productsEdit');
+    Route::post('/products/{product}', 'ProductsController@update')->name('productUpdate');
+    Route::get('/products/{product}/delete', 'ProductsController@delete')->name('productsDelete');
     Route::post('/products/{product}/ratings', 'RatingsController@store')->name('ratingsStore');
 
     //User mangement
     Route::get('/users', 'UsersController@index')->name('usersIndex');
-    Route::get('/user-update', 'UsersController@update')->name('usersUpdate');
-    Route::post('/user-update', 'UsersController@store')->name('usersStore');
+    Route::get('/users/{user}', 'UsersController@show')->name('usersShow');
+    Route::get('/users/{user}/edit', 'UsersController@edit')->name('userEdit');
+    Route::post('/users/{user}', 'UsersController@store')->name('userStore');
 
 });
 

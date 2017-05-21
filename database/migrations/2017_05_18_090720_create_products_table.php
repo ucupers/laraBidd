@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->date('duration');
             $table->boolean('active')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

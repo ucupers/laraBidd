@@ -11,7 +11,7 @@
                         @foreach($products as $product)
 
                             <div class="panel-body">
-                                <h2><b>{{ $product->title }}</b></h2>
+                                <h2><a href="{{ route('productsShow', ['id' => $product->id]) }}" >{{ $product->title }}</a></h2>
                                 <ul>
                                     <li><b>Desc : </b>{{ $product->description }}</li>
                                     <li><b>Img : </b> <img class="sample" src="{{ $product->imgUrl }}" /> </li>

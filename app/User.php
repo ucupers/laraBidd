@@ -34,6 +34,16 @@ class User extends Authenticatable
             ->join('products', 'users.id', '=', 'products.user_id')
             ->groupBy('users.name', 'users.id')
             ->select('users.name', 'users.id', DB::raw('count(*) as products'))
+            ->orderBy('products', 'desc')
             ->get();
     }
+
+    public static function userShow(User $user)
+    {
+        return DB::table('products')
+            ->where('user_id', '=', $user->id)
+            ->get();
+    }
+
+
 }

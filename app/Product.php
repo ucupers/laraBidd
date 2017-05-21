@@ -3,6 +3,7 @@
 namespace auctionTime;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
@@ -30,6 +31,11 @@ class Product extends Model
         return $query->where('active', 0);
     }
 
+    public function findById($id)
+    {
+        return Product::findOrFail($id);
+    }
+
     public function ratings()
     {
         return $this->hasMany(Rating::class);
@@ -44,4 +50,6 @@ class Product extends Model
     {
         $this->ratings()->create(['grade' => $grade, 'comment' => $comment, 'user_id' => $id]);
     }
+
+
 }

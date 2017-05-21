@@ -20,6 +20,7 @@ class CreateRatingsTable extends Migration
             $table->integer('grade');
             $table->string('comment');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
