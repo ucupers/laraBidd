@@ -32,6 +32,8 @@ Route::group( ['middleware' => 'auth' ], function()
 
 });
 
+//Open routes
 Route::get('/', 'ProductsController@index')->name('productsIndex');
 Route::get('/products/{product}', 'ProductsController@show')->name('productsShow');
+Route::get('/products/tags/{tag}', 'TagsController@index')->name('tagsIndex');
 

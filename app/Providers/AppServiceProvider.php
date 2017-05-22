@@ -15,6 +15,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        view()->composer('layouts.sidebar', function($view){
+           $view->with('bestUsers', \auctionTime\User::bestUsers());
+           $view->with('tags', \auctionTime\Tag::all());
+        });
     }
 
     /**
