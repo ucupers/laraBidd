@@ -29,7 +29,7 @@ $factory->define(auctionTime\User::class, function (Faker\Generator $faker) {
 $factory->define(auctionTime\Product::class, function (Faker\Generator $faker) {
 
     return [
-        'user_id' => rand(1,15),
+        'user_id' => rand(1,5),
         'title' => $faker->sentence(),
         'description' => $faker->paragraph,
         'imgUrl' => 'https://4.bp.blogspot.com/-JFud0TuYv2Y/VpdkV9WyKFI/AAAAAAAAAPM/GZZcbVk-Alk/s1600/froots.jpg',

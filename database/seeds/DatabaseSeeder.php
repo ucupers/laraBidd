@@ -25,19 +25,25 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //USERS
-        for ($i=0; $i < 10; $i++)
+        for ($i=0; $i < 50; $i++)
         {
             factory(User::class)->create();
         }
 
-        //PRODUCTS / TAGS
-        for ($i=0; $i < 200; $i++)
+        //PRODUCTS // TAGS
+        for($i=0; $i < 5; $i++)
         {
-            $p = factory(Product::class)->create();
             $t = factory(Tag::class)->create();
+            $u = factory(Tag::class)->create();
+            $v = factory(Tag::class)->create();
 
-            $p->tags()->attach($t);
-        }
+            for($k=0; $k <10; $k++){
+                $p = factory(Product::class)->create();
+                $p->tags()->attach($t);
+                $p->tags()->attach($u);
+                $p->tags()->attach($v);
+            }
+        };
 
 
     }
