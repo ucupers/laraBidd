@@ -24,6 +24,7 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
+            'tags' => 'array',
             'title' => 'required|string|min:3|max:255',
             'description' => 'required|string|min:3|max:255',
             'imgUrl' => 'required|string|min:3|max:255',

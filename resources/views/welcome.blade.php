@@ -1,40 +1,50 @@
 @extends('layouts.app')
 
 @section('content')
-            <div class="col-md-8">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Our products</div>
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">Our products</div>
 
 
-                        @foreach($products as $product)
+            @foreach($products as $product)
 
-                            <div class="panel-body">
-                                <h2><a href="{{ route('productsShow', ['id' => $product->id]) }}" >{{ $product->title }}</a></h2>
-                                <ul>
-                                    <li><b>Desc : </b>{{ $product->description }}</li>
-                                    <li><b>Img : </b> <img class="sample" src="{{ $product->imgUrl }}" /> </li>
-                                    <li><b>MinBid : </b>{{ $product->minBid }}</li>
-                                    <li><b>Instant purchase : </b>{{ $product->instantPurchasePrice }}</li>
-                                </ul>
-                                <h3>Bid for this product !</h3>
-                                <div class="alert alert-info">
-                                    This sale will end <b>{{$product->duration->diffForHumans()}}</b>
-                                </div>
-                                <div class="btn-group btn-group-justified">
-                                    <a href="#" class="btn btn-primary">1€</a>
-                                    <a href="#" class="btn btn-info">5€</a>
-                                    <a href="#" class="btn btn-success">10€</a>
-                                </div>
+                <div class="panel-body">
+                    <h2 class="text-center"><a href="{{ route('productsShow', ['id' => $product->id]) }}">{{ $product->title }}</a></h2>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img class="img-responsive img-thumbnail" src="{{ $product->imgUrl }}"/>
+                            @foreach($product->tags as $tag)
+                                <a href="/products/tags/{{$tag->name}}" style="font-size: 1.5rem; line-height: 4rem" class="label label-info">{{$tag->name}}</a>
+                            @endforeach
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $product->description }}</p>
+                            <p><b>MinBid : </b><span class="label label-success"> {{ $product->minBid }} €</span></p>
+                            <p><b>Instant purchase : </b><span class="label label-success"> {{ $product->instantPurchasePrice }} €</span></p>
+                            <h3>Bid for this product !</h3>
+                            <div class="alert alert-info">
+                                This sale will end in <b>{{$product->duration->diffForHumans()}}</b>
                             </div>
-
-                            @if ($product != $products->last())  <hr> @endif
-
-                        @endforeach
-
+                        </div>
+                    </div>
+                    <br>
+                    <div class="btn-group btn-group-justified">
+                        <a href="#" class="btn btn-primary">1€</a>
+                        <a href="#" class="btn btn-info">5€</a>
+                        <a href="#" class="btn btn-success">10€</a>
+                    </div>
 
                 </div>
-            </div>
-            @include('layouts.sidebar')
+
+                @if ($product != $products->last()) <hr> @endif
+
+            @endforeach
+
+
+        </div>
+    </div>
+    @include('layouts.sidebar')
 @endsection
 
 

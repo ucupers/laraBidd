@@ -9,6 +9,7 @@ use auctionTime\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 class ProductsController extends Controller
@@ -16,7 +17,7 @@ class ProductsController extends Controller
     //Display all products
     public function index()
     {
-        $products = Product::latest()->get();
+        $products = Product::activeLastProducts();
         return view('welcome', compact('products'));
     }
 
@@ -29,7 +30,8 @@ class ProductsController extends Controller
     //Create product
     public function create()
     {
-        return view('products.create');
+        $tags = \auctionTime\Tag::all();
+        return view('products.create', compact('tags'));
     }
 
     //Store product
@@ -51,9 +53,14 @@ class ProductsController extends Controller
             'updated_at' => new \DateTime()
         ];
 
-        Product::create($product);
+        $p = Product::create($product);
 
-        return redirect()->route('productsShow', DB::getPdo()->lastInsertId());
+        foreach ($request->tags as $tag)
+        {
+            $p->tags()->attach($tag);
+        };
+
+        return redirect()->route('productsShow', $p->id);
     }
 
     //Store product
@@ -114,8 +121,7 @@ class ProductsController extends Controller
 
         $product->delete();
 
-        return redirect(route('productsIndex'));
-
+        return redirect(route('usersShow', Auth::user()->id ));
     }
 
 }

@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use auctionTime\User;
 use auctionTime\Product;
+use auctionTime\Tag;
 
 
 class DatabaseSeeder extends Seeder
@@ -29,11 +30,15 @@ class DatabaseSeeder extends Seeder
             factory(User::class)->create();
         }
 
-        //PRODUCTS
-        for ($i=0; $i < 100; $i++)
+        //PRODUCTS / TAGS
+        for ($i=0; $i < 200; $i++)
         {
-            factory(Product::class)->create();
+            $p = factory(Product::class)->create();
+            $t = factory(Tag::class)->create();
+
+            $p->tags()->attach($t);
         }
+
 
     }
 }

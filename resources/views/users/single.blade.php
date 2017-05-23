@@ -16,9 +16,8 @@
                         <hr>
                             <p>Products sold by <b>{{$user->name}}</b> :</p>
                             @foreach($data as $product)
-                                <div class="panel-body">
+                                <div class="panel-body @if (Carbon\Carbon::parse($product->duration)->diffInDays(\Carbon\Carbon::now(), false) > 0) alert alert-warning @endif">
                                     <h2><b>{{ $product->title }}</b></h2>
-
                                     <ul>
                                         <li><b>Desc : </b>{{ $product->description }}</li>
                                         <li><b>MinBid : </b>{{ $product->minBid }}</li>

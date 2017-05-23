@@ -35,10 +35,17 @@ $factory->define(auctionTime\Product::class, function (Faker\Generator $faker) {
         'imgUrl' => 'https://4.bp.blogspot.com/-JFud0TuYv2Y/VpdkV9WyKFI/AAAAAAAAAPM/GZZcbVk-Alk/s1600/froots.jpg',
         'minBid' => $faker->randomFloat($nbMaxDecimals = 3, $min = 0, $max = 100),
         'instantPurchasePrice' =>  $faker->randomFloat($nbMaxDecimals = 3, $min = 101, $max = 500),
-        'duration'=> Carbon::tomorrow(+1),
+        'duration'=> Carbon::tomorrow(+1)->addDays(rand(-10,17)),
         'active' => $faker->boolean,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
+    ];
+});
+
+$factory->define(auctionTime\Tag::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->unique()->colorName,
     ];
 });
 

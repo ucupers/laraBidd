@@ -4,6 +4,7 @@ namespace auctionTime;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class Product extends Model
 {
@@ -15,9 +16,6 @@ class Product extends Model
         'minBid',
         'instantPurchasePrice',
         'active',
-        'duration',
-        'created_at',
-        'updated_at'
     ];
 
     protected $dates = [
@@ -30,6 +28,15 @@ class Product extends Model
     public function scopeIncomplete($query)
     {
         return $query->where('active', 0);
+    }
+
+    public static function activeLastProducts()
+    {
+        return Product::latest()
+            ->where('active', 1)
+            ->whereDate('duration', '>', Carbon::today()->toDateString())
+            ->orderBy('duration', 'ASC')
+            ->get();
     }
 
     //Find by id...

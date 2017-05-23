@@ -24,6 +24,9 @@ Route::group( ['middleware' => 'auth' ], function()
     Route::get('/products/{product}/delete', 'ProductsController@delete')->name('productsDelete');
     Route::post('/products/{product}/ratings', 'RatingsController@store')->name('ratingsStore');
 
+    //Tag management
+    Route::post('/tag-store', 'TagsController@store')->name('tagsStore');
+
     //User mangement
     Route::get('/users', 'UsersController@index')->name('usersIndex');
     Route::get('/users/{user}', 'UsersController@show')->name('usersShow');
