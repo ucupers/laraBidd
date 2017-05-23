@@ -56,6 +56,11 @@ class Product extends Model
         $this->ratings()->create(['grade' => $grade, 'comment' => $comment, 'user_id' => $id]);
     }
 
+    public function addBid($amount, $id)
+    {
+        $this->bids()->create(['amount' => $amount, 'user_id' => $id]);
+    }
+
     //USER RELATIONSHIPS
     public function user()
     {
@@ -66,6 +71,12 @@ class Product extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    //BID RELATIONSHIPS
+    public function bids()
+    {
+        return $this->hasMany(Bid::class);
     }
 
 

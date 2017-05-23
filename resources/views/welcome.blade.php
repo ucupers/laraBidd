@@ -26,14 +26,13 @@
                             <div class="alert alert-info">
                                 This sale will end in <b>{{$product->duration->diffForHumans()}}</b>
                             </div>
+                            <div class="btn-group btn-group-justified">
+                                <a href="{{ route('productsShow', ['id' => $product->id]) }}" class="btn btn-success">Bid for this product !</a>
+                            </div>
                         </div>
                     </div>
                     <br>
-                    <div class="btn-group btn-group-justified">
-                        <a href="#" class="btn btn-primary">1€</a>
-                        <a href="#" class="btn btn-info">5€</a>
-                        <a href="#" class="btn btn-success">10€</a>
-                    </div>
+
 
                 </div>
 

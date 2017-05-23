@@ -27,6 +27,9 @@ Route::group( ['middleware' => 'auth' ], function()
     //Tag management
     Route::post('/tag-store', 'TagsController@store')->name('tagsStore');
 
+    //Bid mangement
+    Route::post('/biding/{product}', 'BidsController@store')->name('bidStore');
+
     //User mangement
     Route::get('/users', 'UsersController@index')->name('usersIndex');
     Route::get('/users/{user}', 'UsersController@show')->name('usersShow');

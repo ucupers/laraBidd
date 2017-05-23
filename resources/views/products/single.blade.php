@@ -16,6 +16,10 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <img class="img-responsive img-thumbnail" src="{{ $product->imgUrl }}"/>
+                                    @foreach($product->tags as $tag)
+                                        <a href="/products/tags/{{$tag->name}}" style="font-size: 1.5rem; line-height: 5rem"
+                                           class="label label-info">{{$tag->name}}</a>
+                                    @endforeach
                                 </div>
                                 <div class="col-md-6">
                                     <p>{{ $product->description }}</p>
@@ -27,18 +31,46 @@
                                     <div class="alert alert-info">
                                         This sale will end <b>{{$product->duration->diffForHumans()}}</b>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <form method="post" action="/biding/{{ $product->id }}">
+                                                {{csrf_field()}}
+                                                <input type="hidden" name="amount" value="1">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary">1 €</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <form method="post" action="/biding/{{ $product->id }}">
+                                                {{csrf_field()}}
+                                                <input type="hidden" name="amount" value="10">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-info">10 €</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <form method="post" action="/biding/{{ $product->id }}">
+                                                {{csrf_field()}}
+                                                <input type="hidden" name="amount" value="100">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-success">100 €</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="jumbotron">
+                                                @foreach($product->bids as $bid)
+                                                    <li class="list-group-item">
+                                                        <b>{{$bid->amount}} €</b>
+                                                    </li>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
-                            @foreach($product->tags as $tag)
-                                <a href="/products/tags/{{$tag->name}}" style="font-size: 1.5rem; line-height: 4rem" class="label label-info">{{$tag->name}}</a>
-                            @endforeach
-                            <br>
-                            <br>
-                            <div class="btn-group btn-group-justified">
-                                <a href="#" class="btn btn-primary">1€</a>
-                                <a href="#" class="btn btn-info">5€</a>
-                                <a href="#" class="btn btn-success">10€</a>
                             </div>
                         </div>
 
