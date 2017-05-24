@@ -18,4 +18,10 @@ class Bid extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    //USER RELATIONSHIPS
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

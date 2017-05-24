@@ -26,7 +26,8 @@
                                     <p>
                                         End : <b>{{$product->duration}}</b>
                                     </p>
-                                    <a href="{{ route('productsShow', ['id' => $product->id]) }}" class="btn btn-primary">Visit the product page</a>
+                                    <a href="{{ route('productsShow', ['id' => $product->id]) }}" class="btn btn-primary">Visit the product page
+
                                     @if ($product->user_id == Auth::user()->id)
                                         <a href="{{ route('productsEdit', ['product' => $product->id]) }}" class="btn btn-warning">Edit your product</a>
                                         <a href="{{ route('productsDelete', ['product' => $product->id]) }}" class="btn btn-danger">Delete your product</a>

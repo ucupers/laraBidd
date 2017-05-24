@@ -17,7 +17,8 @@
                                 <div class="col-md-6">
                                     <img class="img-responsive img-thumbnail" src="{{ $product->imgUrl }}"/>
                                     @foreach($product->tags as $tag)
-                                        <a href="/products/tags/{{$tag->name}}" style="font-size: 1.5rem; line-height: 5rem"
+                                        <a href="/products/tags/{{$tag->name}}"
+                                           style="font-size: 1.5rem; line-height: 5rem"
                                            class="label label-info">{{$tag->name}}</a>
                                     @endforeach
                                 </div>
@@ -27,17 +28,17 @@
                                             €</span></p>
                                     <p><b>Instant purchase : </b><span class="label label-success"> {{ $product->instantPurchasePrice }}
                                             €</span></p>
-                                    <h3>Bid for this product !</h3>
                                     <div class="alert alert-info">
                                         This sale will end <b>{{$product->duration->diffForHumans()}}</b>
                                     </div>
+                                    <h3>Bid for this product !</h3>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <form method="post" action="/biding/{{ $product->id }}">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="amount" value="1">
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary">1 €</button>
+                                                    <button type="submit" class="btn btn-primary form-control">1 €</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -46,7 +47,7 @@
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="amount" value="10">
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-info">10 €</button>
+                                                    <button type="submit" class="btn btn-info form-control">10 €</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -55,19 +56,23 @@
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="amount" value="100">
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-success">100 €</button>
+                                                    <button type="submit" class="btn btn-success form-control">100 €</button>
                                                 </div>
                                             </form>
                                         </div>
-
-                                        <div class="row">
-                                            <div class="jumbotron">
-                                                @foreach($product->bids as $bid)
-                                                    <li class="list-group-item">
-                                                        <b>{{$bid->amount}} €</b>
-                                                    </li>
-                                                @endforeach
-                                            </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-warning">
+                                            <h4>Current bids :</h4>
+                                            @foreach($product->bids as $bid)
+                                                <li class=" @if ($bid == $product->bids->first()) alert alert-success @endif list-group-item ">
+                                                    <b> @if ($bid == $product->bids->first()) CURRENT WINNER : @endif {{ $bid->user->email }}</b>
+                                                    <em>{{ $bid->created_at->diffForHumans() }}</em>
+                                                    <b>{{$bid->amount}} €</b>
+                                                </li>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +86,7 @@
                                 @foreach($product->ratings as $rating)
                                     <li class="list-group-item">
                                         <p>By : {{$rating->user->email}}</p>
-                                        <p>{{$rating->created_at->diffForHumans()}}</p>
+                                        <p>{{$rating->created_at->diffForHumans() }}</p>
                                         <b>{{$rating->grade}} / 5</b>
                                         <em>{{$rating->comment}}</em>
                                     </li>

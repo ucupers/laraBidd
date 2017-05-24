@@ -56,9 +56,20 @@ class Product extends Model
         $this->ratings()->create(['grade' => $grade, 'comment' => $comment, 'user_id' => $id]);
     }
 
+    public static function lastBid()
+    {
+        return Bid::orderBy('created_at', 'desc')->first();
+    }
+
     public function addBid($amount, $id)
     {
-        $this->bids()->create(['amount' => $amount, 'user_id' => $id]);
+        if (!empty(Bid::orderBy('created_at', 'DESC')->where('product_id', '=', $this->id)->first()->amount))
+        {
+            $b = Bid::orderBy('created_at', 'DESC')->where('product_id', '=', $this->id)->first()->amount;
+        } else {
+            $b=0;
+        }
+        $this->bids()->create(['amount' => $amount+$b, 'user_id' => $id]);
     }
 
     //USER RELATIONSHIPS
@@ -76,7 +87,7 @@ class Product extends Model
     //BID RELATIONSHIPS
     public function bids()
     {
-        return $this->hasMany(Bid::class);
+        return $this->hasMany(Bid::class)->orderBy('created_at', 'DESC')->take(7);
     }
 
 
