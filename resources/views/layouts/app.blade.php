@@ -49,6 +49,11 @@
                                     List all
                                 </a>
                             </li>
+                            @if (!Auth::guest())
+                                <li>
+                                    <a href="{{ route('usersShow', [ 'user' => Auth::user()->id] ) }}">My products</a>
+                                </li>
+                            @endif
                             <li>
                                 <a href="{{ route('productsCreate') }}">
                                     Sell a product
@@ -73,7 +78,6 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('usersShow', [ 'user' => Auth::user()->id] ) }}">My products</a></li>
                                 <li><a href="{{ route('userEdit', [ 'user' => Auth::user()->id] ) }}">Edit</a></li>
                                 <li>
                                     <a href="{{ route('logout') }}"

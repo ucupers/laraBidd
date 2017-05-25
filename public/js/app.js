@@ -788,7 +788,23 @@ window.Vue = __webpack_require__(37);
 Vue.component('example', __webpack_require__(34));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
+});
+
+$(document).ready(function () {
+    $('#searchBox').focus();
+
+    var tmpStr = $('#searchBox').val();
+    $('#searchBox').val('');
+    $('#searchBox').val(tmpStr.trim());
+
+    $('#searchBox').keyup(function (e) {
+        if (e.keyCode == 8 || e.keyCode == 46) {} else {
+            setTimeout(function () {
+                $('#searchBoxSubmit').click();
+            }, 1000);
+        }
+    });
 });
 
 /***/ }),

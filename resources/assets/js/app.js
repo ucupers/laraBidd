@@ -20,3 +20,24 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+$( document ).ready(function() {
+    $('#searchBox').focus();
+
+    var tmpStr = $('#searchBox').val();
+    $('#searchBox').val('');
+    $('#searchBox').val(tmpStr.trim());
+
+    $('#searchBox').keyup(function (e) {
+        if(e.keyCode == 8 || e.keyCode == 46)
+        {
+
+        } else {
+            setTimeout(function(){
+                $('#searchBoxSubmit').click();
+            },1000);
+
+        }
+    });
+});
+

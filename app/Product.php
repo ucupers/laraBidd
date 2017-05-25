@@ -24,12 +24,14 @@ class Product extends Model
         'updated_at'
     ];
 
-    //Get active records
+
+    //GET ACTIVE RECORDS
     public function scopeIncomplete($query)
     {
         return $query->where('active', 0);
     }
 
+    //GET UNCOMPLETED PRODUCTS
     public static function activeLastProducts()
     {
         return Product::latest()
@@ -39,11 +41,30 @@ class Product extends Model
             ->get();
     }
 
-    //Find by id...
+    //GET PRODUCT BY ID
     public function findById($id)
     {
         return Product::findOrFail($id);
     }
+
+    //GET BY SEARCHBOX
+    public static function searchBox($query)
+    {
+        $p = Product::where('active', 1)
+            ->whereDate('duration', '>', Carbon::today()->toDateString())
+            ->orderBy('duration', 'ASC')
+            ->where('title', 'like', '%' . $query . '%')
+            ->get();
+
+
+        if(empty($p))
+        {
+            $p="No data found";
+        }
+
+        return $p;
+    }
+
 
     //RATINGS RELATIONSHIPS
     public function ratings()
@@ -56,6 +77,8 @@ class Product extends Model
         $this->ratings()->create(['grade' => $grade, 'comment' => $comment, 'user_id' => $id]);
     }
 
+
+    //BIDS RELATIONSHIPS
     public static function lastBid()
     {
         return Bid::orderBy('created_at', 'desc')->first();
@@ -63,14 +86,19 @@ class Product extends Model
 
     public function addBid($amount, $id)
     {
-        if (!empty(Bid::orderBy('created_at', 'DESC')->where('product_id', '=', $this->id)->first()->amount))
-        {
+        if (!empty(Bid::orderBy('created_at', 'DESC')->where('product_id', '=', $this->id)->first()->amount)) {
             $b = Bid::orderBy('created_at', 'DESC')->where('product_id', '=', $this->id)->first()->amount;
         } else {
-            $b=0;
+            $b = 0;
         }
-        $this->bids()->create(['amount' => $amount+$b, 'user_id' => $id]);
+        $this->bids()->create(['amount' => $amount + $b, 'user_id' => $id]);
     }
+
+    public function bids()
+    {
+        return $this->hasMany(Bid::class)->orderBy('created_at', 'DESC')->take(7);
+    }
+
 
     //USER RELATIONSHIPS
     public function user()
@@ -78,18 +106,12 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
+
     //TAGS RELATIONSHIPS
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
     }
-
-    //BID RELATIONSHIPS
-    public function bids()
-    {
-        return $this->hasMany(Bid::class)->orderBy('created_at', 'DESC')->take(7);
-    }
-
 
 
 }

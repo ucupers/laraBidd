@@ -4,6 +4,7 @@ namespace auctionTime\Http\Controllers;
 
 use auctionTime\Http\Requests\CreateProductRequest;
 use auctionTime\Http\Requests\UpdateProductRequest;
+use auctionTime\Http\Requests\SearchBoxRequest;
 use auctionTime\Product;
 use auctionTime\User;
 use Illuminate\Support\Facades\Auth;
@@ -14,27 +15,27 @@ use Carbon\Carbon;
 
 class ProductsController extends Controller
 {
-    //Display all products
+    //DISPLAY ACTIVE
     public function index()
     {
         $products = Product::activeLastProducts();
         return view('welcome', compact('products'));
     }
 
-    //Show ONE product
+    //SHOW ONE
     public function show(Product $product)
     {
         return view('products.single', compact('product'));
     }
 
-    //Create product
+    //CREATE
     public function create()
     {
         $tags = \auctionTime\Tag::all();
         return view('products.create', compact('tags'));
     }
 
-    //Store product
+    //STORE
     public function store(CreateProductRequest $request)
     {
         $duration = new \DateTime();
@@ -63,7 +64,7 @@ class ProductsController extends Controller
         return redirect()->route('productsShow', $p->id);
     }
 
-    //Store product
+    //EDIT
     public function edit(Product $product)
     {
         if (Auth::user()->id != $product->user_id)
@@ -74,6 +75,7 @@ class ProductsController extends Controller
         return view('products.edit', compact('product'));
     }
 
+    //UPDATE
     public function update(UpdateProductRequest $request)
     {
         $productId = $request->route('product');
@@ -109,6 +111,7 @@ class ProductsController extends Controller
         return redirect()->route('productsShow', $productId);
     }
 
+    //DELETE
     public function delete(Request $request)
     {
         $productId = $request->route('product');
@@ -122,6 +125,13 @@ class ProductsController extends Controller
         $product->delete();
 
         return redirect(route('usersShow', Auth::user()->id ));
+    }
+
+    public function search(SearchBoxRequest $request)
+    {
+        $products = Product::searchBox($request->q);
+        $q = $request->q;
+        return view('welcome', compact('products', 'q'));
     }
 
 }
