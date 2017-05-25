@@ -16,6 +16,7 @@ class Product extends Model
         'minBid',
         'instantPurchasePrice',
         'active',
+        'duration',
     ];
 
     protected $dates = [
@@ -84,6 +85,13 @@ class Product extends Model
         return Bid::orderBy('created_at', 'desc')->first();
     }
 
+    public static function bidById($product_id){
+        return Bid::where('product_id', '=', $product_id)
+            ->limit(5)
+            ->orderBy('amount', 'DESC')
+            ->get();
+    }
+
     public function addBid($amount, $id)
     {
         if (!empty(Bid::orderBy('created_at', 'DESC')->where('product_id', '=', $this->id)->first()->amount)) {
@@ -97,6 +105,11 @@ class Product extends Model
     public function bids()
     {
         return $this->hasMany(Bid::class)->orderBy('created_at', 'DESC')->take(7);
+    }
+
+    public function bidsHistory($id)
+    {
+        return Bid::where('product_id', '=', $id)->get();
     }
 
 

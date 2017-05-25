@@ -12,3 +12,16 @@ img.sample{
     margin: 3rem;
     width: 250px;
 }
+
+.winner {
+    margin-top: 2rem;
+}
+
+.winner div:first-child{
+    background-color: #76da7e;
+    color: #007500;
+}
+
+.winner div:first-child:before{
+    content: 'WINNER';
+}

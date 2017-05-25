@@ -70,12 +70,12 @@
 
                             <div class="form-group">
                                 <label>Duration :</label>
-                                <label class="radio-inline"><input type="radio" name="duration" value="7">1 week</label>
-                                <label class="radio-inline"><input type="radio" name="duration" value="14">2
+                                <label class="radio-inline"><input type="radio" name="duration" value="8">1 week</label>
+                                <label class="radio-inline"><input type="radio" name="duration" value="15">2
                                     weeks</label>
                                 <label class="radio-inline"><input type="radio" name="duration" checked="checked"
                                                                    value="21">3 weeks</label>
-                                <label class="radio-inline"><input type="radio" name="duration" value="28">4
+                                <label class="radio-inline"><input type="radio" name="duration" value="29">4
                                     weeks</label>
                             </div>
 

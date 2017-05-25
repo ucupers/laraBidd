@@ -38,8 +38,8 @@ class ProductsController extends Controller
     //STORE
     public function store(CreateProductRequest $request)
     {
-        $duration = new \DateTime();
-        $duration->add(new \DateInterval('P'.$request->duration.'D'));
+        $duration = Carbon::now();
+        //$duration->add(new \DateInterval('P'.$request->duration.'D'));
 
         $product = [
             'user_id' => auth()->id(),
@@ -48,7 +48,7 @@ class ProductsController extends Controller
             'imgUrl' => $request->imgUrl,
             'minBid' => $request->minBid,
             'instantPurchasePrice' => $request->instantPurchasePrice,
-            'duration' => $duration,
+            'duration' => new \DateTime(),
             'active' => $request->active,
             'created_at' => new \DateTime(),
             'updated_at' => new \DateTime()

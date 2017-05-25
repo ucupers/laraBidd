@@ -2,6 +2,7 @@
 
 namespace auctionTime\Http\Controllers;
 
+use auctionTime\Bid;
 use auctionTime\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 use auctionTime\User;
@@ -50,7 +51,7 @@ class UsersController extends Controller
     //Show ONE user
     public function show(User $user)
     {
-        $data = User::userShow($user);
-        return view('users.single', compact('user', 'data'));
+        $products = User::userShow($user);
+        return view('users.single', compact('user', 'products'));
     }
 }
