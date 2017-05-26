@@ -39,7 +39,7 @@ class Product extends Model
             ->where('active', 1)
             ->whereDate('duration', '>', Carbon::today()->toDateString())
             ->orderBy('duration', 'ASC')
-            ->get();
+            ->simplePaginate(8);
     }
 
     //GET PRODUCT BY ID

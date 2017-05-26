@@ -38,6 +38,11 @@ class User extends Authenticatable
             ->get();
     }
 
+    public function bids()
+    {
+        return $this->hasMany(Bid::class)->orderBy('created_at', 'DESC');
+    }
+
     public static function userShow(User $user)
     {
         return DB::table('products')

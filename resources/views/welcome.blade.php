@@ -40,6 +40,13 @@
 
             @endforeach
 
+            @if ( method_exists($products, 'links'))
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    {{ $products->links() }}
+                </div>
+            </div>
+            @endif
 
         </div>
     </div>
